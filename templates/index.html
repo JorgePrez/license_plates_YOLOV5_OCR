@@ -1,0 +1,168 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container">
+        <br><br>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <input type="file" class="form-control" name="image_name" required>
+                <input type="submit" value="Upload" class="btn btn-outline-secondary">
+            </div>
+        </form>
+    </div>
+
+    {% if upload %}
+        <div class="container">
+            <br><br>
+            <table>
+                <tr>
+                    <td>
+                        <img class="rounded float-left img-fluid" src="/static/upload/{{ upload_image }}" alt="">
+                    </td>
+                    <td>
+                        <img class="rounded float-right img-fluid" src="/static/predict/{{ upload_image }}" alt="">
+                    </td>
+                </tr>
+
+            </table>
+            <br>
+            <table style="border: solid black; width: 100%;">
+
+                {% if no == 1 %}
+
+             <!--   <tr style="border: solid black;">
+                    <th>Se detecto matricula en la imagen = {{no}}</th>
+                </tr> -->
+
+
+                <tr style="border: solid black;background-color: greenyellow">
+                    <th>Placa detectada</th>
+                    <th>Aplicando preprocesamiento</th>
+                    <th>Segmentación</th>
+                    <th>Reconocimiento de caracteres</th>
+                </tr>
+
+
+                <tr style="border: solid black;">
+                    <td>
+                        <img class="img-fluid" src="/static/roi/1_{{ upload_image }}" alt="">
+                    </td>
+
+                    <td>
+                        <img class="img-fluid" src="/static/preprocessing/1_{{ upload_image }}" alt="">
+                    </td>
+
+                    <td>
+                        <img class="img-fluid" src="/static/segmentation/1_{{ upload_image }}" alt="">
+                    </td>
+                  <!--   <td style="background-color: greenyellow;">
+                         <td>
+
+                        <h1 class="display-8"> P123SAT</h1>
+                    </td>
+
+                    -->
+                    {% for lic in text %}
+                    <td>
+                        <h1 class="display-8">  {{ lic }}</h1>
+                        </td>
+                    {% endfor %}
+
+                </tr>
+
+
+
+
+
+
+                {% endif %}
+
+                {% if no == 0 %}
+
+                <tr style="border: solid black;background-color: red">
+                    <th>No fue detectada ninguna matrícula en la imagen</th>
+
+                 <!--  
+                  <th>No fue detectada ninguna matrícula en la imagen = {{no}}</th>
+                 -->  
+                </tr>
+
+                {% endif %}
+
+
+
+                {% if no > 1 %}
+
+                  <!--  
+                   <tr style="border: solid black;">
+                       <th>Se detectaron: {{no}} matriculas en la imagen</th>
+                   </tr> 
+                --> 
+   
+                   <tr style="border: solid black;background-color: greenyellow">
+                       <th>Placa detectada</th>
+                       <th>Aplicando preprocesamiento</th>
+                       <th>Segmentación</th>
+                       <th>Reconocimiento de caracteres</th>
+                   </tr>
+
+                  
+                   {% for lic in text %}
+                   <tr style="border: solid black;">
+                    <td>
+                        <img class="img-fluid" src="/static/roi/{{ loop.index }}_{{ upload_image }}" alt="">
+                    </td>
+                    <td>
+                        <img class="img-fluid" src="/static/preprocessing/{{ loop.index }}_{{ upload_image }}" alt="">
+                    </td>
+                    <td>
+                        <img class="img-fluid" src="/static/segmentation/{{ loop.index }}_{{ upload_image }}" alt="">
+                    </td>
+                   
+                   
+                   <!--
+                    <td style="background-color: greenyellow;">
+                       <h1 class="display-8"> {{ lic }}</h1>
+                   </td>
+                -->
+
+                    <td>
+                    <h1 class="display-8">  {{ lic }}</h1>
+                    </td>
+
+
+
+                   </tr>
+                   {% endfor %}
+
+                   {% endif %}
+
+
+
+
+
+
+              
+
+                <!-- 
+                
+                    {% for lic in text %}
+                    <tr style="border: solid black;">
+                    <td style="background-color: greenyellow;">
+                        <p class="display-8"> {{ lic }}</p>
+                    </td>
+                    </tr>
+                    {% endfor %}
+
+
+                 -->
+                
+            </table>
+
+        </div>
+    
+    
+    
+    {% endif %}
+
+{% endblock  %}
