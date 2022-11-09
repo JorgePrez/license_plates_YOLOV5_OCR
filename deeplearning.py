@@ -322,7 +322,8 @@ def preprocesamiento_img(img,path,filename):
 def preprocesamiento_img_thresh(img,path,filename):
   #gray->blur->adaptive thresold -> inversion -> dilatation(op)
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-  thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+  blur = cv2.GaussianBlur(gray, (3, 3), 0)
+  thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
 
   cv2.imwrite('./static/preprocessing/{}'.format(filename),thresh)
 
