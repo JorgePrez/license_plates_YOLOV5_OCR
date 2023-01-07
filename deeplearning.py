@@ -623,7 +623,9 @@ def semantica(number_plate):
          n_letrainicial='P'
        elif (n_letrainicial1=='0'):
          n_letrainicial='O'
-       elif not((n_letrainicial1=='C')or(n_letrainicial1=='O')or(n_letrainicial1=='A')):
+       elif (n_letrainicial1=='D'):
+         n_letrainicial='O'
+       elif not((n_letrainicial1=='C')or(n_letrainicial1=='O')or(n_letrainicial1=='A')or(n_letrainicial1=='M')):
          n_letrainicial='P'
        else:
          n_letrainicial=n_letrainicial1
